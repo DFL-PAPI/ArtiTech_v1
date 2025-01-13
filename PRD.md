@@ -1,203 +1,158 @@
-# ArtiTech  
+# ArtiTech
 **Product Requirements Document (PRD)**  
-**Version:** 1.0  
-**Date:** *December / 29 / 2024*  
-**Author:** *(ArtiTech / JOONHYOUNG LEE)*
+**Version:** 1.1  
+**Date:** January 1, 2025  
+**Author:** JOONHYOUNG LEE
 
----
+## Executive Summary
+ArtiTech is an AI-powered platform revolutionizing art interaction in museums and galleries through two core functionalities:
+1. AI-driven painting recommendations based on user preferences
+2. Interactive art experiences allowing users to become part of famous artworks
 
-## 1. Project Overview
+## 1. Vision & Objectives
 
-**Description**  
+### Vision Statement
+To make art more accessible and engaging by bridging the gap between viewers and artworks through cutting-edge AI technology.
 
-ArtiTech is an AI-driven platform that provides two primary functionalities:
+### Core Objectives
+- Deliver accurate, context-aware art recommendations
+- Create immersive, personalized art experiences
+- Increase museum engagement, especially among younger audiences
+- Provide scalable, museum-grade technology solutions
+- Maintain high performance and user satisfaction metrics
 
-1. **Painting Recommendation**  
-   When the user uploads their own painting or image, the system suggests visually and thematically similar artworks from a gallery—matching mood, genre, and stylistic nuance.
+## 2. Target Audience
 
-2. **User Painting Insertion into Paintings**  
-   Users can upload a personal painting (or take one on-site). The system removes the background and seamlessly inserts them into the painting. This interactive feature is designed to inspire creativity and spark interest in art, especially for younger audiences.
+### Primary Users
+1. **Families with Children**
+   - Primary Need: Engaging, educational art experiences
+   - Usage Context: Museum kiosks
+   - Key Requirements: Simple interface, quick results, fun interaction
 
-The aim is to create an engaging tool that allows museum-goers, families, and art enthusiasts to explore and interact with gallery artworks in a novel, interactive way.
+2. **Art Enthusiasts**
+   - Primary Need: Art discovery and deep engagement
+   - Usage Context: Personal devices or kiosks
+   - Key Requirements: Detailed artwork information, sophisticated search
 
----
+3. **Museum Staff**
+   - Primary Need: System management and analytics
+   - Usage Context: Administrative interface
+   - Key Requirements: Content management, usage analytics
 
-## 2. Goals & Objectives
+## 3. Product Features
 
-- **Provide Accurate Art Recommendations**  
-  ArtiTech should return paintings that share similar mood, genre, or style with the uploaded image.
+### 3.1 Art Recommendation System
+- **Smart Image Analysis**
+  - AI-powered visual similarity detection
+  - Style and genre classification
+  - Mood and theme analysis
+  
+- **Recommendation Engine**
+  - Multi-factor matching algorithm
+  - Personalized suggestions
+  - Real-time processing
 
-- **Deliver an Immersive Experience**  
-  Let users see themselves “inside” a painting, either via basic overlay or with more advanced style-transfer or inpainting features.
+### 3.2 Interactive Art Experience
+- **Background Removal**
+  - Automatic subject isolation
+  - High-precision edge detection
+  - Manual adjustment tools
 
-- **Promote Art Appreciation & Engagement**  
-  Foster creative exploration and learning among visitors, especially children, by making art more accessible and interactive.
+- **Art Integration**
+  - Seamless subject placement
+  - Style matching
+  - Position and scale controls
 
-- **Support Scalability**  
-  The system should handle various image inputs, a potentially large database of paintings, and simultaneous users (e.g., in a museum or online setting).
+### 3.3 User Interface
+- **Input Methods**
+  - Image upload
+  - Direct camera capture
+  - Gallery selection
 
----
+- **Interactive Controls**
+  - Real-time preview
+  - Drag-and-drop positioning
+  - Simple editing tools
 
-## 3. User Personas
+## 4. Technical Requirements
 
-### 3.1 Families with Kids
+### 4.1 Performance Metrics
+- Recommendation Generation: < 3 seconds
+- Background Removal: < 5 seconds
+- Style Transfer: < 15 seconds
+- System Uptime: 99.9%
 
-- **Motivation**: Engage children with a fun, hands-on activity that immerses them in art.  
-- **Usage Scenario**: On-site museum kiosk or website, needing an easy, intuitive interface.
+### 4.2 Hardware Requirements
+- Minimum GPU: NVIDIA RTX 3060 (8GB VRAM)
+- Recommended GPU: NVIDIA RTX 4080 (16GB VRAM)
+- CPU: 8+ cores
+- RAM: 32GB minimum
 
-### 3.2 Art Enthusiasts & Gallery Visitors
+### 4.3 Software Stack
+- Python 3.8+
+- PyTorch 1.7+
+- CUDA support
+- PostgreSQL
+- Vector database system
 
-- **Motivation**: Discover new paintings based on personal tastes and have a unique, interactive art experience.  
-- **Usage Scenario**: Use their own devices (phone, tablet) or a museum kiosk to explore and insert themselves into famous or thematically similar artworks.
+## 5. Implementation Timeline
 
-### 3.3 Museum/Gallery Staff & Curators
+### Phase 1: Foundation (Weeks 1-3)
+- Development environment setup
+- Database configuration
+- Core AI model integration (CLIP)
 
-- **Motivation**: Offer innovative, educational experiences that enhance visitor satisfaction and engagement.  
-- **Usage Scenario**: Oversee kiosk setup, track analytics on user engagement, maintain or update painting databases.
+### Phase 2: Core Features (Weeks 4-6)
+- Background processing system (SAM)
+- Basic user interface
+- Initial testing
 
----
-
-## 4. Key Features
-
-### 4.1 Painting Recommendation
-
-- **Image Embedding & Similarity**  
-  Extract feature embeddings from paintings and user-submitted images using a pretrained CNN or CLIP model. Retrieve top-k results from a vector index for quick similarity search.
-
-- **Mood/Genre/Style Tagging**  
-  Each painting has metadata describing its mood (e.g., serene, dramatic), genre (e.g., impressionism, abstract), and stylistic nuances (brushstroke, color palette). The system can re-rank or filter recommendations using these tags.
-
-### 4.2 User painting Insertion
-
-- **Segmentation & Background Removal**  
-  Automatically remove backgrounds from user paintings to isolate the person or object of interest.
-
-- **Overlay / Compositing**  
-  Place the user’s cutout on the chosen painting. Include positioning (drag-and-drop), scaling, and optional advanced blending.
-
-- **Style Transfer & Inpainting (Optional)**  
-  Enhance realism or artistic flair by transferring the painting’s style onto the user or by using AI inpainting to seamlessly integrate the user in the scene.
-
-### 4.3 Interactive Interface
-
-- **Real-Time Preview**  
-  Users can see an immediate (or near-immediate) preview of their inserted figure in the painting.
-
-- **Save & Share**  
-  Option to download the final composite image or share via email/social media.
-
----
-
-## 5. Constraints & Assumptions
-
-- **Hardware Constraints**  
-  The system may require GPU acceleration for real-time segmentation and image retrieval.
-
-- **Rights to Images**  
-  The gallery or museum must have the right to display or use the paintings in the database. User images must be handled under data privacy regulations.
-
-- **Connectivity**  
-  In a museum environment, ensure stable network or plan for offline capabilities (caching, local processing).
-
----
+### Phase 3: Enhancement (Weeks 7-9)
+- Style transfer integration
+- Performance optimization
+- User testing and feedback
 
 ## 6. Success Metrics
 
-- **Recommendation Accuracy**  
-  Users rate recommended paintings on relevance. Aim for a high average satisfaction score.
+### 6.1 User Engagement
+- Average session duration: > 5 minutes
+- Return user rate: > 30%
+- Feature utilization rate: > 70%
 
-- **User Engagement**  
-  Track number of images uploaded, average session duration, or repeated usage.
+### 6.2 Technical Performance
+- System response time within specified limits
+- Error rate < 1%
+- API uptime > 99.9%
 
-- **Conversion & Sharing**  
-  Percentage of final composite images downloaded or shared on social media.
+### 6.3 Business Impact
+- Increased museum visitor engagement
+- Positive user feedback (> 4.5/5 rating)
+- Social media sharing metrics
 
----
+## 7. Constraints & Considerations
 
-## 7. Functional Requirements
+### 7.1 Technical Constraints
+- GPU processing requirements
+- Network bandwidth limitations
+- Real-time processing capabilities
 
-### 7.1 Image Uploader
-- Users must be able to upload or capture images via a camera (kiosk/webcam) or file upload.
+### 7.2 Legal & Privacy
+- Image rights management
+- User data protection (GDPR compliance)
+- Content moderation requirements
 
-### 7.2 Similarity Engine
-- Compute and store embeddings for all gallery paintings.  
-- For each user-uploaded painting/image, generate an embedding and retrieve top-k similar artworks with minimal latency.
+### 7.3 Operational
+- Museum operating hours
+- Staff training requirements
+- Maintenance windows
 
-### 7.3 Segmentation
-- Implement or integrate a pre-trained model (e.g., U^2-Net, remove.bg API) to isolate the user from the background.
-
-### 7.4 Composite & (Optional) Style Transfer
-- Provide a basic overlay system that positions the user onto the painting.  
-- Optionally implement advanced style transfer or inpainting for more seamless integration.
-
-### 7.5 User Interface
-- Must be simple enough for children to navigate with minimal assistance.  
-- Provide a preview of the composite image and let the user move/resize their figure.
-
-### 7.6 Security & Privacy
-- Transmit user paintings securely (HTTPS).  
-- Clearly communicate if user images are stored or only processed transiently.
-
----
-
-## 8. Non-Functional Requirements
-
-- **Performance**  
-  Initial recommendation query should return results in under 3 seconds.  
-  Background removal should be completed in under 5 seconds under typical usage.
-
-- **Reliability**  
-  Support concurrent users with no system crashes or significant slowdowns.
-
-- **Maintainability**  
-  Code should be modular, enabling updates to the model or the user interface without major refactoring.
-
-- **Usability**  
-  Interface must be intuitive; minimal text required, with easy-to-follow prompts and large touchscreen-friendly buttons.
-
-- **Scalability**  
-  Should handle increasing volumes of paintings and images, as well as additional features (potential expansions to AR or VR).
+## 8. Future Enhancements
+- AR/VR integration
+- Mobile application development
+- Multi-language support
+- Advanced analytics dashboard
 
 ---
 
-## 9. User Flows
-
-### 9.1 Flow A: Painting Recommendation
-1. User uploads an image of a painting they like.  
-2. System computes embedding, performs a similarity search in the gallery database.  
-3. System displays top recommended paintings.  
-4. User selects a recommended painting to learn more or to use for painting insertion.
-
-### 9.2 Flow B: User painting Insertion
-1. User uploads or captures a personal painting.  
-2. System removes the background via segmentation.  
-3. User selects a painting (from Flow A or from a general list).  
-4. System overlays the user’s cutout onto the painting; user can adjust position, scale, etc.  
-5. (Optional) User applies style transfer or advanced inpainting.  
-6. Final composite image is presented, with the option to save or share.
-
----
-
-## 10. Open Questions & Next Steps
-- **AR/VR Integration**  
-  Will we extend this to an augmented reality experience?
-
-- **Style Transfer Scope**  
-  Is an advanced inpainting or neural style approach a “must-have” for initial launch, or a future enhancement?
-
-- **Privacy Compliance**  
-  Confirm user consent procedures, storage duration, and disclaimers for user images.
-
-- **Pilot Testing**  
-  Plan a pilot in one museum or gallery location to gather real-world user feedback and refine the product.
-
----
-
-## Sign-Off
-**Prepared By:** [Your Name or Team Name]  
-**Approved By:** [Key Stakeholders / Sponsors]  
-**Date:** [Date of Document]
-
----
-
-**End of ArtiTech PRD**
+**Approved By:** [Stakeholder Names]  
+**Date:** January 1, 2025
